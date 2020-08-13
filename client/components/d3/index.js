@@ -7,7 +7,7 @@ import LineCircle from './line-circle'
 import Interpolation from './interpolation'
 import Axises from './axises'
 import EnterExitUpdate from './enter-update-exit'
-import TwoAxises from './TwoAxises'
+import TwoAxises from './two-axises'
 
 import Head from '../head'
 

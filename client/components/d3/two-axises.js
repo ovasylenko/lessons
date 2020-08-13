@@ -16,31 +16,31 @@ const data = source.map((it) => ({
   recovered: it.recovered
 }))
 
-const drawAxises = ({ width, height, field }) => {
+const drawAxises = ({ field, height, width }) => {
   const getNewAxis = (cx) => select('#chart').append('g').attr('class', cx)
-
-  const yAx = select('.y-axis')
-  const xAx = select('.x-axis')
 
   const scaleY = scaleLinear()
     .domain([min(data.map((it) => it[field])), max(data.map((it) => it[field]))])
     .range([height - Y_MARGIN * 2, Y_MARGIN])
 
   const scaleX = scaleTime()
-    .domain([new Date(min(data.map((it) => +it.date))), new Date(max(data.map((it) => +it.date)))])
-    .range([X_MARGIN, width - X_MARGIN * 2])
+    .domain([min(data.map((it) => it.date)), max(data.map((it) => it.date))])
+    .range([X_MARGIN, width - 2 * X_MARGIN])
+
+  const yAx = select('.y-axis')
+  const xAx = select('.x-axis')
 
   const YAxis = axisLeft().scale(scaleY)
   const XAxis = axisBottom().scale(scaleX)
 
-  ;(yAx.empty() ? getNewAxis('y-axis') : yAx)
-    .transition()
+  ;(yAx.empty() ? getNewAxis('y-axis') : yAx).transition()
     .attr('transform', `translate(${2 * X_MARGIN}, ${Y_MARGIN})`)
     .call(YAxis)
-
   ;(xAx.empty() ? getNewAxis('x-axis') : xAx)
-    .attr('transform', `translate(${X_MARGIN}, ${DEFAULT_HEIGHT - Y_MARGIN})`)
+    .attr('transform', `translate(${X_MARGIN}, ${height - Y_MARGIN})`)
     .call(XAxis)
+
+  return data.length
 }
 
 const drawLine = ({ width, height, field }) => {
