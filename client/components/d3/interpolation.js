@@ -2,21 +2,13 @@ import React, { useEffect, useState } from 'react'
 import {
   select,
   line,
-  // curveLinear,
   curveBasis,
   curveCardinal,
   curveMonotoneX,
   curveCatmullRom,
-  // curveStepBefore,
-  // curveStepAfter,
-  // curveStep
 } from 'd3'
 
 const curveArray = [
-  // { d3Curve: curveLinear, color: 'red' },
-  // { d3Curve: curveStep, color: 'yellow' },
-  // { d3Curve: curveStepBefore, color: 'green' },
-  // { d3Curve: curveStepAfter, color: 'pink' },
   { d3Curve: curveBasis, color: 'purple' },
   { d3Curve: curveCardinal, color: 'orange' },
   { d3Curve: curveMonotoneX, color: 'blue' },
